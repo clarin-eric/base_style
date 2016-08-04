@@ -1,4 +1,3 @@
-language: node_js
 sudo: false
 addons:
   apt:
@@ -7,7 +6,7 @@ addons:
 env:
   global:
     - BOOTSTRAP_DEP_URL='https://github.com/twbs/bootstrap/archive/v3.3.6.tar.gz'
-before_deploy:
+script:
   - sh -ex ./build.sh
 deploy:
   api_key:
