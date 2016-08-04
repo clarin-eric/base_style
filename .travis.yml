@@ -1,0 +1,26 @@
+language: node_js
+sudo: false
+addons:
+  apt:
+    packages:
+    - curl
+env:
+  global:
+    - BOOTSTRAP_DEP_URL='https://github.com/twbs/bootstrap/archive/v3.3.6.tar.gz'
+before_deploy:
+  - sh -ex ./build.sh
+deploy:
+  api_key:
+    secure: "$DEPLOY_OAUTH_TOKEN"
+  file:
+    - "variables.less"
+    - "bootstrap/"
+  on:
+    all_branches: true
+  overwrite: true
+  provider: releases
+  skip_cleanup: true
+notifications:
+  email:
+    on_success: change
+    on_failure: always

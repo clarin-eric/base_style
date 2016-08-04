@@ -1,0 +1,15 @@
+-   repo: git://github.com/pre-commit/pre-commit-hooks
+    sha: 3fa02652357ff0dbb42b5bc78c673b7bc105fcf3
+    hooks:
+    -   id: check-added-large-files
+    -   id: check-symlinks
+    -   id: check-case-conflict
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+-   repo: git://github.com/detailyang/pre-commit-shell
+    sha: 95ba9774e83e5d9f7abd4da5a0ca63e1e75156fe
+    hooks:
+    -   id: shell-lint
+        args:
+            - --exclude=SC1091
