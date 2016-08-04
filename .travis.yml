@@ -14,8 +14,8 @@ deploy:
   api_key:
     secure: "$DEPLOY_OAUTH_TOKEN"
   file:
+    - "bootstrap.tgz"
     - "variables.less"
-    - "bootstrap/"
   on:
     tags: true
   overwrite: true
