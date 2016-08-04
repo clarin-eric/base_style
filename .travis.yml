@@ -16,7 +16,7 @@ deploy:
     - "variables.less"
     - "bootstrap/"
   on:
-    all_branches: true
+    tags: true
   overwrite: true
   provider: releases
   skip_cleanup: true
