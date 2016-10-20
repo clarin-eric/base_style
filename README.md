@@ -18,7 +18,7 @@ Make sure to use a compatible version of Bootstrap when compiling! The version f
 As with the CSS file (see above), its best to use it as is (preferably including it build time based on the style's version number) and make any overrides or other adjustments in separate Less files local to the project. This way you can easily upgrade the CLARIN style when a new release is made available.
 
 ### Using the style in a Maven project
-This has not been implemented yet. See [#4](https://github.com/clarin-eric/base_style/issues/4).
+Generation of Maven artifacts for usage as a dependency in Maven project has not been implemented yet. See [#4](https://github.com/clarin-eric/base_style/issues/4).
 
 ### Using the style in a drupal website
 See the [www-clarin-eu_src](https://github.com/clarin-eric/www-clarin-eu_src) project. Dependency of [alpine-httpd-drupal](https://gitlab.com/CLARIN-ERIC/alpine-httpd-drupal).
