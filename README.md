@@ -6,7 +6,7 @@ A bootstrap based CLARIN style implementing the [CLARIN interface guidelines](ht
 ## Using the CLARIN style
 
 ### Compiled CSS output
-A compiled CSS file is made available for each release. See releases within the [main base_style repository](https://github.com/clarin-eric/base_style). The best way to use this CSS file in your project, is to use it as is and make any overrides or other adjustments in separate CSS files local to the project. This way you can easily upgrade the CLARIN CSS when a new release is made available.
+A compiled CSS file is made available for each [release](https://github.com/clarin-eric/base_style/releases). See releases within the [main base_style repository](https://github.com/clarin-eric/base_style). The best way to use this CSS file in your project, is to use it as is and make any overrides or other adjustments in separate CSS files local to the project. This way you can easily upgrade the CLARIN CSS when a new release is made available.
 
 ### Less file
 The `variables.less` file can be obtained form the Git repository and is also made available with each release. 
@@ -25,10 +25,13 @@ See the [www-clarin-eu_src](https://github.com/clarin-eric/www-clarin-eu_src) pr
 
 ## Making changes to the CLARIN style
 
-- Edit `variables.less`
- - In a branch or fork
- - ...
-- Check the result
- - ...
-- Make a release
- - ...
+1. Edit the Less file(s)
+ - Make a _branch or fork_ (please **don't** commit anything not ready for release to master!) of the base_style repository.
+ - Make any desired changes to the `variables.less` file or add new style code as required.
+1. Check the results
+ - Build the Less output using your desired method (see Bootstrap's [instructions for building CSS].(https://getbootstrap.com/getting-started/#grunt) but you can use [other Less compilers](http://lesscss.org/usage/) as well) and check the results.
+ - Make further changes as required.
+1. Make or request a release
+ - Increase the version number.
+ - Merge into 'master' or make a pull request.
+ - Make a tag or ask someone with the right permissions. This will trigger a [Travis job](https://travis-ci.org/clarin-eric/base_style), which will result in a deployment of the artifacts into a [release](https://github.com/clarin-eric/base_style/releases).
