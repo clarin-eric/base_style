@@ -9,7 +9,7 @@ env:
   global:
     - BOOTSTRAP_DEP_URL='https://github.com/twbs/bootstrap/archive/v3.3.6.tar.gz'
 script:
-  - sh -ex ./build.sh
+  - sh -x ./build.sh
 deploy:
   api_key:
     secure: "$DEPLOY_OAUTH_TOKEN"
