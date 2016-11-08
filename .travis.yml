@@ -5,16 +5,16 @@ addons:
   apt:
     packages:
     - curl
+    - bsdtar
 env:
-  global:
-    - BOOTSTRAP_DEP_URL='https://github.com/twbs/bootstrap/archive/v3.3.6.tar.gz'
+  - BOOTSTRAP_VER="3.3.7"
 script:
-  - sh -ex ./build.sh
+  - sh -x ./build.sh
 deploy:
   api_key:
     secure: "$DEPLOY_OAUTH_TOKEN"
   file:
-    - "bootstrap.tgz"
+    - "release.tgz"
     - "variables.less"
   on:
     tags: true

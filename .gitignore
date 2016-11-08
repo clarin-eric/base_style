@@ -1,0 +1,8 @@
+# Mac OS X
+.DS_Store
+
+*.iml
+.idea
+
+release.tgz
+bootstrap-*/
