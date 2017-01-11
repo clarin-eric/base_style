@@ -7,14 +7,14 @@ addons:
     - curl
     - bsdtar
 env:
-  - BOOTSTRAP_VER="3.3.7"
+  - STYLE_VERSION="0.1.2-dev" BOOTSTRAP_VER="3.3.7"
 script:
   - sh -x ./build.sh
 deploy:
   api_key:
     secure: "$DEPLOY_OAUTH_TOKEN"
   file:
-    - "release.tgz"
+    - "release-${STYLE_VERSION}.tgz"
     - "variables.less"
   on:
     tags: true

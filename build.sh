@@ -10,4 +10,4 @@ cd -- "bootstrap-${BOOTSTRAP_VER}/"
 cp -f -- '../variables.less' 'less/variables.less'
 npm --silent install
 grunt dist
-tar -f '../release.tgz' -c -v -z 'dist/'
+tar -f "../release-${STYLE_VERSION}.tgz" -c -v -z 'dist/'
