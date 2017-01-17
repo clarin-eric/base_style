@@ -13,10 +13,13 @@
     <profiles>
         <profile>
             <!-- Profile that creates an artifact that only contains the variables.less file -->
-            <id>less</id>
+            <id>less-without-bootstrap</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <properties>
+                <jar.classifier>less-without-bootstrap</jar.classifier>
+            </properties>
             <build>
                 <resources>
                     <resource>
@@ -29,4 +32,23 @@
             </build>
         </profile>
     </profiles>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>${jar.classifier}</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
