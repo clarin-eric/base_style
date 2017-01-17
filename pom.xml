@@ -9,6 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <less.clarin-variables>variables.less</less.clarin-variables>
     </properties>
     <profiles>
         
@@ -20,6 +21,8 @@
             </activation>
             <properties>
                 <jar.classifier>css-with-bootstrap</jar.classifier>
+                <less.sourcedir>${project.build.directory}/less</less.sourcedir>
+                <less.outputname>clarin-base.css</less.outputname>
             </properties>
             <build>
                 <resources>
@@ -28,22 +31,42 @@
                     </resource>
                 </resources>
                 <plugins>
-                    <!-- TODO: retrieve bootstrap -->
+                    <plugin>
+                        <!-- Copies variables.less into the right place -->
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.0.2</version>
+                        <executions>
+                            <execution>
+                                <id>copy-resources</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${less.sourcedir}</outputDirectory>
+                                    <resources>          
+                                        <resource>
+                                            <directory>.</directory>
+                                            <includes>
+                                                <include>${less.clarin-variables}</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>              
+                                </configuration>            
+                            </execution>
+                        </executions>
+                    </plugin>
                     <plugin>
                         <!-- Compiles .less files into .css -->
                         <groupId>org.lesscss</groupId>
                         <artifactId>lesscss-maven-plugin</artifactId>
                         <version>1.7.0.1.1</version>
                         <configuration>
-                            <sourceDirectory>.</sourceDirectory>
+                            <sourceDirectory>${less.sourcedir}</sourceDirectory>
                             <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
-                            <outputFileFormat>clarin-base.css</outputFileFormat>
+                            <outputFileFormat>${less.outputname}</outputFileFormat>
                             <compress>true</compress>
                             <force>true</force>
-                            <includes>
-                                <!-- TODO: include bootstrap -->
-                                <include>variables.less</include>
-                            </includes>
                         </configuration>
                         <executions>
                             <execution>
@@ -68,7 +91,7 @@
                     <resource>
                         <directory>.</directory>
                         <includes>
-                            <include>variables.less</include>
+                            <include>${less.clarin-variables}</include>
                         </includes>
                     </resource>
                 </resources>
