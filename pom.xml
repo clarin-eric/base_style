@@ -10,10 +10,10 @@
         <bootstrap.version>3.3.6</bootstrap.version>
         
         <less.sourcedir>${project.build.directory}/less</less.sourcedir>
-        <less.outputname>clarin-base.css</less.outputname>
+        <less.outputname>bootstrap-clarin.css</less.outputname>
         
         <bootstrap.tempdir>${project.build.directory}/temp/bootstrap</bootstrap.tempdir>
-        <bootstrap.lessdir>META-INF/resources/webjars/bootstrap-less-only/${bootstrap.version}/less</bootstrap.lessdir>
+        <bootstrap.srcdir>META-INF/resources/webjars/bootstrap-less-only/${bootstrap.version}</bootstrap.srcdir>
     </properties>
     
     <build>
@@ -62,7 +62,7 @@
                             <resources>
                                 <resource>
                                     <!-- Bootstrap LESS sources unpacked by the maven-dependency-plugin -->
-                                    <directory>${bootstrap.tempdir}/${bootstrap.lessdir}</directory>
+                                    <directory>${bootstrap.tempdir}/${bootstrap.srcdir}/less</directory>
                                     <excludes>
                                         <!-- Exclude the variables file, we will use our style's version instead! -->
                                         <exclude>variables.less</exclude>
@@ -117,15 +117,43 @@
                         <directory>${project.build.directory}/${project.build.finalName}</directory>
                     </resource>
                 </resources>
-                <plugins>                    
-                    <!-- Step 3: compiles LESS files (mixed together in the previous stepps) into .css -->
+                <plugins>   
+                    <!-- Step 3: copy bootstrap files except for LESS sources to build output -->
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.0.2</version>
+                        <executions>
+                            <execution>
+                                <id>copy-resources-for-css</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <!-- Bootstrap licence and fonts to be bundled with compiled CSS -->
+                                            <directory>${bootstrap.tempdir}/${bootstrap.srcdir}</directory>
+                                            <includes>
+                                                <include>LICENSE</include>
+                                                <include>fonts/**</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>              
+                                </configuration>            
+                            </execution>
+                        </executions>
+                    </plugin>
+                    
+                    <!-- Step 4: compile LESS files (mixed together in the previous stepps) into .css -->
                     <plugin> 
                         <groupId>org.lesscss</groupId>
                         <artifactId>lesscss-maven-plugin</artifactId>
                         <version>1.7.0.1.1</version>
                         <configuration>
                             <sourceDirectory>${less.sourcedir}</sourceDirectory>
-                            <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+                            <outputDirectory>${project.build.directory}/${project.build.finalName}/css</outputDirectory>
                             <outputFileFormat>${less.outputname}</outputFileFormat>
                             <compress>true</compress>
                             <force>true</force>
