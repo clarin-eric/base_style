@@ -9,7 +9,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <less.clarin-variables>variables.less</less.clarin-variables>
         <bootstrap.version>3.3.6</bootstrap.version>
         <bootstrap.lessdir>META-INF/resources/webjars/bootstrap-less-only/${bootstrap.version}/less</bootstrap.lessdir>
     </properties>
@@ -35,8 +34,8 @@
                     </resource>
                 </resources>
                 <plugins>
+                    <!-- Step 1: extract the bootstrap less sources -->
                     <plugin>
-                        <!-- Extracts the bootstrap less sources -->
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
                         <version>3.0.0</version>
@@ -62,8 +61,9 @@
                             </execution>
                         </executions>
                     </plugin>
+                    
+                    <!-- Step 2: copy bootstrapp LESS sources and variables.less into a common place -->
                     <plugin>
-                        <!-- Copies bootstrapp LESS sources and variables.less into a common place -->
                         <artifactId>maven-resources-plugin</artifactId>
                         <version>3.0.2</version>
                         <executions>
@@ -80,13 +80,15 @@
                                             <!-- Bootstrap LESS sources unpacked by the maven-dependency-plugin -->
                                             <directory>${bootstrap.tempdir}/${bootstrap.lessdir}</directory>
                                             <excludes>
+                                                <!-- Exclude the variables file, we will use our style's version instead! -->
                                                 <exclude>variables.less</exclude>
                                             </excludes>
                                         </resource>
                                         <resource>
+                                            <!-- Our variables.less file, to be mixed with Bootstrap LESS sources -->
                                             <directory>.</directory>
                                             <includes>
-                                                <include>${less.clarin-variables}</include>
+                                                <include>variables.less</include>
                                             </includes>
                                         </resource>
                                     </resources>              
@@ -94,8 +96,9 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <!-- Compiles LESS files (mixed together in the previous stepps) into .css -->
+                    
+                    <!-- Step 3: compiles LESS files (mixed together in the previous stepps) into .css -->
+                    <plugin> 
                         <groupId>org.lesscss</groupId>
                         <artifactId>lesscss-maven-plugin</artifactId>
                         <version>1.7.0.1.1</version>
@@ -132,14 +135,14 @@
                     <resource>
                         <directory>.</directory>
                         <includes>
-                            <include>${less.clarin-variables}</include>
+                            <include>variables.less</include>
                         </includes>
                     </resource>
                 </resources>
             </build>
         </profile>
-        
     </profiles>
+    
     <build>
         <plugins>
             <plugin>
