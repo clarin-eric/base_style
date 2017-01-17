@@ -11,12 +11,55 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <profiles>
+        
         <profile>
-            <!-- Profile that creates an artifact that only contains the variables.less file -->
-            <id>less-without-bootstrap</id>
+            <!-- Profile that creates an artifact with a single compiled CSS file -->
+            <id>css-with-bootstrap</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <properties>
+                <jar.classifier>css-with-bootstrap</jar.classifier>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>${project.build.directory}/${project.build.finalName}</directory>
+                    </resource>
+                </resources>
+                <plugins>
+                    <!-- TODO: retrieve bootstrap -->
+                    <plugin>
+                        <!-- Compiles .less files into .css -->
+                        <groupId>org.lesscss</groupId>
+                        <artifactId>lesscss-maven-plugin</artifactId>
+                        <version>1.7.0.1.1</version>
+                        <configuration>
+                            <sourceDirectory>.</sourceDirectory>
+                            <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+                            <outputFileFormat>clarin-base.css</outputFileFormat>
+                            <compress>true</compress>
+                            <force>true</force>
+                            <includes>
+                                <!-- TODO: include bootstrap -->
+                                <include>variables.less</include>
+                            </includes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>compile</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <profile>
+            <!-- Profile that creates an artifact that only contains the variables.less file -->
+            <id>less-without-bootstrap</id>
             <properties>
                 <jar.classifier>less-without-bootstrap</jar.classifier>
             </properties>
@@ -31,6 +74,7 @@
                 </resources>
             </build>
         </profile>
+        
     </profiles>
     <build>
         <plugins>
