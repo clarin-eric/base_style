@@ -6,6 +6,8 @@ addons:
     packages:
     - curl
     - bsdtar
+jdk:
+  - oraclejdk8
 env:
   - STYLE_VERSION="0.1.2-dev" BOOTSTRAP_VER="3.3.7"
 script:
