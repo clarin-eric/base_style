@@ -10,9 +10,10 @@ env:
   - STYLE_VERSION="0.1.2-dev" BOOTSTRAP_VER="3.3.7"
 script:
   - sh -x ./build.sh
-  - mvn clean deploy -Pcss-with-bootstrap
-  - mvn clean deploy -Pless-with-bootstrap
-  - mvn clean deploy -Pless-without-bootstrap
+  - mvn --version
+  - mvn clean deploy -X -Pcss-with-bootstrap
+  - mvn clean deploy -X -Pless-with-bootstrap
+  - mvn clean deploy -X -Pless-without-bootstrap
 deploy:
   api_key:
     secure: "$DEPLOY_OAUTH_TOKEN"
