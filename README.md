@@ -32,6 +32,6 @@ See the [www-clarin-eu_src](https://github.com/clarin-eric/www-clarin-eu_src) pr
  - Build the Less output using your desired method (see Bootstrap's [instructions for building CSS](https://getbootstrap.com/getting-started/#grunt) but you can use [other Less compilers](http://lesscss.org/usage/) as well) and check the results.
  - Make further changes as required.
 1. Make or request a release
- - Increase the version number.
+ - **IMPORTANT**: increase the version number in [.travis.yml](.travis.yml) and [pom.xml](pom.xml)
  - Merge into 'master' or make a pull request.
  - Make a tag or ask someone with the right permissions. This will trigger a [Travis job](https://travis-ci.org/clarin-eric/base_style), which will result in a deployment of the artifacts into a [release](https://github.com/clarin-eric/base_style/releases).
