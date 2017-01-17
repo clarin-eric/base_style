@@ -7,11 +7,98 @@
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
         <bootstrap.version>3.3.6</bootstrap.version>
+        
+        <less.sourcedir>${project.build.directory}/less</less.sourcedir>
+        <less.outputname>clarin-base.css</less.outputname>
+        
+        <bootstrap.tempdir>${project.build.directory}/temp/bootstrap</bootstrap.tempdir>
         <bootstrap.lessdir>META-INF/resources/webjars/bootstrap-less-only/${bootstrap.version}/less</bootstrap.lessdir>
     </properties>
+    
+    <build>
+        <plugins>
+            <!-- Common build step 1: extract the bootstrap less sources -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.webjars.bower</groupId>
+                                    <artifactId>bootstrap-less-only</artifactId>
+                                    <version>${bootstrap.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${bootstrap.tempdir}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+                    
+            <!-- Common build step 2: copy bootstrapp LESS sources and variables.less into a common place -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${less.sourcedir}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <!-- Bootstrap LESS sources unpacked by the maven-dependency-plugin -->
+                                    <directory>${bootstrap.tempdir}/${bootstrap.lessdir}</directory>
+                                    <excludes>
+                                        <!-- Exclude the variables file, we will use our style's version instead! -->
+                                        <exclude>variables.less</exclude>
+                                    </excludes>
+                                </resource>
+                                <resource>
+                                    <!-- Our variables.less file, to be mixed with Bootstrap LESS sources -->
+                                    <directory>.</directory>
+                                    <includes>
+                                        <include>variables.less</include>
+                                    </includes>
+                                </resource>
+                            </resources>              
+                        </configuration>            
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- Final step: make a jar -->
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>${jar.classifier}</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     
     <profiles>
         
@@ -23,9 +110,6 @@
             </activation>
             <properties>
                 <jar.classifier>css-with-bootstrap</jar.classifier>
-                <less.sourcedir>${project.build.directory}/less</less.sourcedir>
-                <less.outputname>clarin-base.css</less.outputname>
-                <bootstrap.tempdir>${project.build.directory}/temp/bootstrap</bootstrap.tempdir>
             </properties>
             <build>
                 <resources>
@@ -33,70 +117,7 @@
                         <directory>${project.build.directory}/${project.build.finalName}</directory>
                     </resource>
                 </resources>
-                <plugins>
-                    <!-- Step 1: extract the bootstrap less sources -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <version>3.0.0</version>
-                        <executions>
-                            <execution>
-                                <id>unpack</id>
-                                <phase>generate-sources</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.webjars.bower</groupId>
-                                            <artifactId>bootstrap-less-only</artifactId>
-                                            <version>${bootstrap.version}</version>
-                                            <type>jar</type>
-                                            <overWrite>false</overWrite>
-                                            <outputDirectory>${bootstrap.tempdir}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    
-                    <!-- Step 2: copy bootstrapp LESS sources and variables.less into a common place -->
-                    <plugin>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <version>3.0.2</version>
-                        <executions>
-                            <execution>
-                                <id>copy-resources</id>
-                                <phase>generate-sources</phase>
-                                <goals>
-                                    <goal>copy-resources</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>${less.sourcedir}</outputDirectory>
-                                    <resources>
-                                        <resource>
-                                            <!-- Bootstrap LESS sources unpacked by the maven-dependency-plugin -->
-                                            <directory>${bootstrap.tempdir}/${bootstrap.lessdir}</directory>
-                                            <excludes>
-                                                <!-- Exclude the variables file, we will use our style's version instead! -->
-                                                <exclude>variables.less</exclude>
-                                            </excludes>
-                                        </resource>
-                                        <resource>
-                                            <!-- Our variables.less file, to be mixed with Bootstrap LESS sources -->
-                                            <directory>.</directory>
-                                            <includes>
-                                                <include>variables.less</include>
-                                            </includes>
-                                        </resource>
-                                    </resources>              
-                                </configuration>            
-                            </execution>
-                        </executions>
-                    </plugin>
-                    
+                <plugins>                    
                     <!-- Step 3: compiles LESS files (mixed together in the previous stepps) into .css -->
                     <plugin> 
                         <groupId>org.lesscss</groupId>
@@ -143,23 +164,4 @@
         </profile>
     </profiles>
     
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <configuration>
-                            <classifier>${jar.classifier}</classifier>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>
