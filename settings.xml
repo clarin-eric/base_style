@@ -3,12 +3,40 @@
 		<server>
 		  <id>CLARIN</id>
 		  <username>${env.NEXUS_DEPLOY_USERNAME}</username>
-		  <password>${env.NEXUS_DEPLOY_USERNAME}</password>
+		  <password>${env.NEXUS_DEPLOY_PASSWORD}</password>
 		</server>
 		<server>
 		  <id>CLARIN-Snapshot</id>
 		  <username>${env.NEXUS_DEPLOY_USERNAME}</username>
-		  <password>${env.NEXUS_DEPLOY_USERNAME}</password>
+		  <password>${env.NEXUS_DEPLOY_PASSWORD}</password>
 		</server>
 	</servers>
+	
+	<profiles>	
+        <profile>
+            <id>CLARIN</id>
+            <repositories>
+                <repository>
+                    <id>CLARIN</id>
+                    <name>CLARIN Repository</name>
+                    <url>https://nexus.clarin.eu/content/repositories/Clarin</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+                <repository>
+                    <id>CLARIN-Snapshot</id>
+                    <name>CLARIN Snapshot Repository</name>
+                    <url>https://nexus.clarin.eu/content/repositories/clarin-snapshot</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+  
+    <activeProfiles>
+        <activeProfile>CLARIN</activeProfile>
+    </activeProfiles>
 </settings>
