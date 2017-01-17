@@ -14,9 +14,9 @@ env:
 script:
   - sh -x ./build.sh
   - mvn --version
-  - mvn clean deploy -X -Pcss-with-bootstrap
-  - mvn clean deploy -X -Pless-with-bootstrap
-  - mvn clean deploy -X -Pless-without-bootstrap
+  - mvn clean deploy -X -Pcss-with-bootstrap --settings settings.xml
+  - mvn clean deploy -X -Pless-with-bootstrap --settings settings.xml
+  - mvn clean deploy -X -Pless-without-bootstrap --settings settings.xml
 deploy:
   api_key:
     secure: "$DEPLOY_OAUTH_TOKEN"
