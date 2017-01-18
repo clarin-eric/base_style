@@ -3,9 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.clarin.style</groupId>
     <artifactId>base-style</artifactId>
-    <version>${env.STYLE_VERSION}</version>
+    <version>${style.version}</version>
     <packaging>pom</packaging>
     <properties>
+    	<style.version>${env.STYLE_VERSION}</style.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <bootstrap.version>${env.BOOTSTRAP_VER}</bootstrap.version>
         
