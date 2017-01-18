@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.clarin.style</groupId>
     <artifactId>base-style</artifactId>
-    <version>${style.version}</version>
+    <version>${env.STYLE_VERSION}</version>
     <packaging>pom</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <bootstrap.version>3.3.6</bootstrap.version>
+        <bootstrap.version>${env.STYLE_VERSION}</bootstrap.version>
         
         <less.sourcedir>${project.build.directory}/less</less.sourcedir>
         <less.outputname>bootstrap-clarin.css</less.outputname>

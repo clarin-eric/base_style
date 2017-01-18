@@ -13,9 +13,9 @@ env:
 script:
   - sh -x ./build.sh
   - mvn clean
-  - sh -c "mvn package -Pcss-with-bootstrap        -Dstyle.version=${STYLE_VERSION} -Dbootstrap.version=${BOOTSTRAP_VERSION}"
-  - sh -c "mvn package -Pless-with-bootstrap       -Dstyle.version=${STYLE_VERSION} -Dbootstrap.version=${BOOTSTRAP_VERSION}"
-  - sh -c "mvn package -Pless-without-bootstrap    -Dstyle.version=${STYLE_VERSION} -Dbootstrap.version=${BOOTSTRAP_VERSION}"
+  - mvn package -Pcss-with-bootstrap
+  - mvn package -Pless-with-bootstrap
+  - mvn package -Pless-without-bootstrap
 deploy:
   api_key:
     secure: "$DEPLOY_OAUTH_TOKEN"
