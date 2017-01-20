@@ -5,7 +5,10 @@ All notable changes to the [CLARIN base style project](https://github.com/clarin
 ## 0.1.2
 No changes in styling but improved distribution/packaging:
  - proper creation of a compiled tarball containing CLARIN flavoured Bootstrap
- - creation of Maven artifacts: compiled Bootstrap CSS; full customised Bootstrap LESS sources; CLARIN LESS variables without Bootstrap
+ - creation of Maven artifacts: 
+  - compiled Bootstrap CSS
+  - full customised Bootstrap LESS sources
+  - CLARIN LESS variables without Bootstrap
  - deployment of these Maven artifacts in the [CLARIN Nexus repository](https://nexus.clarin.eu)
  - automation of the above steps (using [Travis CI](https://travis-ci.org/clarin-eric/base_style))
 
