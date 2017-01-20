@@ -16,7 +16,7 @@ script:
   - mvn package -Pcss-with-bootstrap
   - mvn package -Pless-with-bootstrap
   - mvn package -Pless-without-bootstrap
-  - sh -x "./src/main/script/maven-deploy.sh --settings .maven-settings.xml"
+  - sh -c "./src/main/script/maven-deploy.sh --settings .maven-settings.xml"
 deploy:
   api_key:
     secure: "$DEPLOY_OAUTH_TOKEN"
