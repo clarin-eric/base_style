@@ -18,7 +18,29 @@ Make sure to use a compatible version of Bootstrap when compiling! The version f
 As with the CSS file (see above), its best to use it as is (preferably including it build time based on the style's version number) and make any overrides or other adjustments in separate Less files local to the project. This way you can easily upgrade the CLARIN style when a new release is made available.
 
 ### Using the style in a Maven project
-Generation of Maven artifacts for usage as a dependency in Maven project has not been implemented yet. See [#4](https://github.com/clarin-eric/base_style/issues/4).
+You can use the following artifact:
+
+```xml
+<groupId>eu.clarin.style</groupId>
+<artifactId>base-style</artifactId>
+<version>0.1.2</version>
+<!-- available classifiers: 'css-with-bootstrap', 'less-with-bootstrap' and 'less-without-bootstrap' -->
+<classifier>css-with-bootstrap</classifier>
+```
+
+This can be used in combination with, for example, the [unpack goal of the maven-dependency-plugin](https://maven.apache.org/plugins/maven-dependency-plugin/unpack-mojo.html)
+so that the CLARIN base style CSS or LESS is included among your resources before compiling or packaging. See the [VLO project](https://github.com/clarin-eric/VLO) for an example.
+
+JARs are also bundled with releases.
+
+If you would like to build one of these JARs yourself, pass the following parameters:
+```
+-Dstyle.version=${STYLE_VERSION}
+-Dbootstrap.version=${BOOTSTRAP_VERSION}
+-P${PROFILE}
+```
+
+where `${PROFILE}` should match one of the classifiers and the style and bootstrap versions should match the respective values specified in `.travis.yml`
 
 ### Using the style in a drupal website
 See the [www-clarin-eu_src](https://github.com/clarin-eric/www-clarin-eu_src) project. Dependency of [alpine-httpd-drupal](https://gitlab.com/CLARIN-ERIC/alpine-httpd-drupal).
@@ -32,6 +54,6 @@ See the [www-clarin-eu_src](https://github.com/clarin-eric/www-clarin-eu_src) pr
  - Build the Less output using your desired method (see Bootstrap's [instructions for building CSS](https://getbootstrap.com/getting-started/#grunt) but you can use [other Less compilers](http://lesscss.org/usage/) as well) and check the results.
  - Make further changes as required.
 1. Make or request a release
- - Increase the version number.
+ - **IMPORTANT**: increase the version number in [.travis.yml](.travis.yml)
  - Merge into 'master' or make a pull request.
  - Make a tag or ask someone with the right permissions. This will trigger a [Travis job](https://travis-ci.org/clarin-eric/base_style), which will result in a deployment of the artifacts into a [release](https://github.com/clarin-eric/base_style/releases).
