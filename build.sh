@@ -7,7 +7,7 @@ curl --fail --location --proto '=https' --silent --show-error --tlsv1 \
     | bsdtar -xf -
 ## Apply CLARIN base style.
 cd -- "bootstrap-${BOOTSTRAP_VER}/"
-cp -f -- '../variables.less' 'less/variables.less'
+cp -f -- '../src/main/less/variables.less' 'less/variables.less'
 npm --silent install
 grunt dist
 tar -f "../release-${STYLE_VERSION}.tgz" -c -v -z 'dist/'

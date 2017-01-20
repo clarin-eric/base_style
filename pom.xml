@@ -71,7 +71,7 @@
                                 </resource>
                                 <resource>
                                     <!-- Our variables.less file, to be mixed with Bootstrap LESS sources -->
-                                    <directory>.</directory>
+                                    <directory>src/main/less</directory>
                                     <includes>
                                         <include>variables.less</include>
                                     </includes>
@@ -256,7 +256,7 @@
                 <directory>target-less-without-bootstrap</directory>
                 <resources>
                     <resource>
-                        <directory>.</directory>
+                        <directory>src/main/less</directory>
                         <includes>
                             <include>variables.less</include>
                         </includes>
