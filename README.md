@@ -33,14 +33,15 @@ so that the CLARIN base style CSS or LESS is included among your resources befor
 
 JARs are also bundled with releases.
 
-If you would like to build one of these JARs yourself, pass the following parameters:
+Note that the [POM file](pom.xml) was designed to be triggered in the CI process (i.e. by Travis). If you would like to build (one of) these JARs yourself, pass the following parameters:
 ```
 -Dstyle.version=${STYLE_VERSION}
 -Dbootstrap.version=${BOOTSTRAP_VERSION}
 -P${PROFILE}
 ```
-
 where `${PROFILE}` should match one of the classifiers and the style and bootstrap versions should match the respective values specified in `.travis.yml`
+
+To deploy to Nexus, you can use the [maven-deploy script](src/main/script/maven-deploy.sh). This requires the `STYLE_VERSION` environment variable to be set.
 
 ### Using the style in a drupal website
 See the [www-clarin-eu_src](https://github.com/clarin-eric/www-clarin-eu_src) project. Dependency of [alpine-httpd-drupal](https://gitlab.com/CLARIN-ERIC/alpine-httpd-drupal).
