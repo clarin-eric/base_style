@@ -8,7 +8,7 @@ REPOSITORY_URL_STABLE=https://nexus.clarin.eu/content/repositories/Clarin
 #from env
 #STYLE_VERSION=0.1.2
 
-if [[ "${STYLE_VERSION}" == *"SNAPSHOT" ]]
+if "${STYLE_VERSION}" | grep -q "SNAPSHOT"
 then
 	echo "Detected SNAPSHOT version"
 	REPOSITORY="CLARIN-Snapshot"
