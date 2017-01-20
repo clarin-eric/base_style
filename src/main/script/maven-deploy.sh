@@ -25,11 +25,11 @@ echo "URL: ${REPOSITORY_URL}"
 mvn ${PLUGIN}:deploy-file \
 	-Durl=${REPOSITORY_URL} \
 	-DrepositoryId=${REPOSITORY} \
-	-Dfile=target-css-with-bootstrap/base-style-0.1.2-dev12.jar \
+	-Dfile=target-css-with-bootstrap/base-style-${STYLE_VERSION}.jar \
 	-Dclassifier=css-with-bootstrap \
 	-Dversion=${STYLE_VERSION} \
 	-DpomFile=pom.xml \
-	-Dfiles=target-less-with-bootstrap/base-style-0.1.2-dev12-less-with-bootstrap.jar,target-less-without-bootstrap/base-style-0.1.2-dev12-less-without-bootstrap.jar \
+	-Dfiles=target-less-with-bootstrap/base-style-${STYLE_VERSION}-less-with-bootstrap.jar,target-less-without-bootstrap/base-style-${STYLE_VERSION}-less-without-bootstrap.jar \
 	-Dclassifiers=less-with-bootstrap,less-without-bootstrap \
 	-Dtypes=jar,jar \
 	$@
