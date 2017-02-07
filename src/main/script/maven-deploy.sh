@@ -6,15 +6,15 @@ REPOSITORY_URL_SNAPSHOT="${REPOSITORY_URL_SNAPSHOT:-https://nexus.clarin.eu/cont
 REPOSITORY_URL_STABLE="${REPOSITORY_URL_STABLE:-https://nexus.clarin.eu/content/repositories/Clarin}"
 #from env: STYLE_VERSION (e.g. "0.1.3-SNAPSHOT")
 
-if [ "${TRAVIS_SECURE_ENV_VARS}" != true ]
+if [ "${TRAVIS_SECURE_ENV_VARS}" != "true" ]
 then
 	echo "Secure environment variables not set. Skipping Maven deployment!"
 	exit 0;
 fi
 
-if [ "${TRAVIS_PULL_REQUEST}" = false ]
+if [ "${TRAVIS_PULL_REQUEST}" != "false" ]
 then
-	echo "Pull request. Skipping Maven deployment!"
+	echo "Pull request (${TRAVIS_PULL_REQUEST}). Skipping Maven deployment!"
 	exit 0;
 fi
 
