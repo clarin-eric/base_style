@@ -14,7 +14,7 @@
         <less.outputname>bootstrap-clarin.css</less.outputname>
         
         <bootstrap.tempdir>${project.build.directory}/temp/bootstrap</bootstrap.tempdir>
-        <bootstrap.srcdir>META-INF/resources/webjars/bootstrap-less-only/${bootstrap.version}</bootstrap.srcdir>
+        <bootstrap.srcdir>META-INF/resources/webjars/bootstrap/${bootstrap.version}</bootstrap.srcdir>
     </properties>
     
     <build>
@@ -34,8 +34,8 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.webjars.bower</groupId>
-                                    <artifactId>bootstrap-less-only</artifactId>
+                                    <groupId>org.webjars.npm</groupId>
+                                    <artifactId>bootstrap</artifactId>
                                     <version>${bootstrap.version}</version>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
@@ -140,15 +140,15 @@
                                     <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                                     <resources>
                                         <resource>
-                                            <!-- Bootstrap licence and fonts to be bundled with compiled CSS -->
-                                            <directory>${bootstrap.tempdir}/${bootstrap.srcdir}</directory>
+                                            <!-- Bootstrap fonts and scripts to be bundled with compiled CSS -->
+                                            <directory>${bootstrap.tempdir}/${bootstrap.srcdir}/dist</directory>
                                             <includes>
-                                                <include>LICENSE</include>
                                                 <include>fonts/**</include>
+                                                <include>js/**</include>
                                             </includes>
                                         </resource>
-                                    </resources>              
-                                </configuration>            
+                                    </resources>           
+                                </configuration>         
                             </execution>
                         </executions>
                     </plugin>
@@ -213,11 +213,11 @@
                                     <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                                     <resources>
                                         <resource>
-                                            <!-- Bootstrap licence and fonts to be bundled with compiled CSS -->
-                                            <directory>${bootstrap.tempdir}/${bootstrap.srcdir}</directory>
+                                            <!-- Bootstrap fonts and scripts to be bundled with compiled CSS -->
+                                            <directory>${bootstrap.tempdir}/${bootstrap.srcdir}/dist</directory>
                                             <includes>
-                                                <include>LICENSE</include>
                                                 <include>fonts/**</include>
+                                                <include>js/**</include>
                                             </includes>
                                         </resource>
                                     </resources>              

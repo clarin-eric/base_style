@@ -2,6 +2,11 @@
 
 All notable changes to the [CLARIN base style project](https://github.com/clarin-eric/base_style) will be documented in this file.
 
+## 0.1.3
+- Updated bootstrap version to 3.3.7
+- Tooltip background colour now primary brand colour (turquoise blue)
+- Javascript is now bundled in compiled distributions
+
 ## 0.1.2
 No changes in styling but improved distribution/packaging:
  - proper creation of a compiled tarball containing CLARIN flavoured Bootstrap
@@ -13,7 +18,7 @@ No changes in styling but improved distribution/packaging:
  - automation of the above steps (using [Travis CI](https://travis-ci.org/clarin-eric/base_style))
 
 ## 0.1.1
-Make link-color lighter to avoid confusion with normal text
+- Make link-color lighter to avoid confusion with normal text
 
 ## 0.1.0
-First stable release, to be used in the [CLARIN website](https://www.clarin.eu) and [VLO](https://vlo.clarin.eu)
+- First stable release, to be used in the [CLARIN website](https://www.clarin.eu) and [VLO](https://vlo.clarin.eu)
