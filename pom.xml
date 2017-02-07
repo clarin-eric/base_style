@@ -140,15 +140,15 @@
                                     <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                                     <resources>
                                         <resource>
-                                            <!-- Bootstrap licence and fonts to be bundled with compiled CSS -->
-                                            <directory>${bootstrap.tempdir}/${bootstrap.srcdir}</directory>
+                                            <!-- Bootstrap fonts and scripts to be bundled with compiled CSS -->
+                                            <directory>${bootstrap.tempdir}/${bootstrap.srcdir}/dist</directory>
                                             <includes>
-                                                <include>LICENSE</include>
                                                 <include>fonts/**</include>
+                                                <include>js/**</include>
                                             </includes>
                                         </resource>
-                                    </resources>              
-                                </configuration>            
+                                    </resources>           
+                                </configuration>         
                             </execution>
                         </executions>
                     </plugin>
@@ -213,11 +213,11 @@
                                     <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
                                     <resources>
                                         <resource>
-                                            <!-- Bootstrap licence and fonts to be bundled with compiled CSS -->
-                                            <directory>${bootstrap.tempdir}/${bootstrap.srcdir}</directory>
+                                            <!-- Bootstrap fonts and scripts to be bundled with compiled CSS -->
+                                            <directory>${bootstrap.tempdir}/${bootstrap.srcdir}/dist</directory>
                                             <includes>
-                                                <include>LICENSE</include>
                                                 <include>fonts/**</include>
+                                                <include>js/**</include>
                                             </includes>
                                         </resource>
                                     </resources>              
