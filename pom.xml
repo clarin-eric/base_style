@@ -14,7 +14,7 @@
         <less.outputname>bootstrap-clarin.css</less.outputname>
         
         <bootstrap.tempdir>${project.build.directory}/temp/bootstrap</bootstrap.tempdir>
-        <bootstrap.srcdir>META-INF/resources/webjars/bootstrap-less-only/${bootstrap.version}</bootstrap.srcdir>
+        <bootstrap.srcdir>META-INF/resources/webjars/bootstrap/${bootstrap.version}</bootstrap.srcdir>
     </properties>
     
     <build>
@@ -34,8 +34,8 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.webjars.bower</groupId>
-                                    <artifactId>bootstrap-less-only</artifactId>
+                                    <groupId>org.webjars.npm</groupId>
+                                    <artifactId>bootstrap</artifactId>
                                     <version>${bootstrap.version}</version>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
