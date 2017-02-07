@@ -2,11 +2,22 @@
 set -e
 
 PLUGIN="org.apache.maven.plugins:maven-deploy-plugin:2.8.2"
-REPOSITORY_URL_SNAPSHOT=https://nexus.clarin.eu/content/repositories/clarin-snapshot
-REPOSITORY_URL_STABLE=https://nexus.clarin.eu/content/repositories/Clarin
+REPOSITORY_URL_SNAPSHOT="${REPOSITORY_URL_SNAPSHOT:-https://nexus.clarin.eu/content/repositories/clarin-snapshot}"
+REPOSITORY_URL_STABLE="${REPOSITORY_URL_STABLE:-https://nexus.clarin.eu/content/repositories/Clarin}"
+#from env: STYLE_VERSION (e.g. "0.1.3-SNAPSHOT")
 
-#from env
-#STYLE_VERSION=0.1.2
+if [ "${TRAVIS_SECURE_ENV_VARS}" != true ]
+then
+	echo "Secure environment variables not set. Skipping Maven deployment!"
+	exit 0;
+fi
+
+if [ "${TRAVIS_PULL_REQUEST}" = false ]
+then
+	echo "Pull request. Skipping Maven deployment!"
+	exit 0;
+fi
+
 
 if echo "${STYLE_VERSION}" | grep -q "SNAPSHOT"
 then
