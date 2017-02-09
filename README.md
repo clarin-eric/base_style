@@ -8,14 +8,27 @@ A [Bootstrap](https://getbootstrap.com/) based CLARIN style implementing the [CL
 ### Compiled CSS output
 A compiled CSS file is made available for each [release](https://github.com/clarin-eric/base_style/releases). See releases within the [main base_style repository](https://github.com/clarin-eric/base_style). The best way to use this CSS file in your project, is to use it as is and make any overrides or other adjustments in separate CSS files local to the project. This way you can easily upgrade the CLARIN CSS when a new release is made available.
 
-### Less file
+### LESS files
+
+#### Bootstrap variables
+
 The [variables.less](src/main/less/variables.less) file can be obtained form the Git repository and is also made available with each release. 
 
-Use this Less file in place of the supplied file of the same name when building CSS from Bootstrap sources (see Bootstrap's [instructions for building CSS](https://getbootstrap.com/getting-started/#grunt)). 
+Use this LESS file in place of the supplied file of the same name when building CSS from Bootstrap sources (see Bootstrap's [instructions for building CSS](https://getbootstrap.com/getting-started/#grunt)). 
+
+#### Additional style classes
+
+The [clarin-additions.less](src/main/less/clarin-additions.less) file provides additional common CLARIN classes that are not part of Bootstrap.
+
+This LESS file has to be wrapped into a parent LESS file that also includes its Bootstrap dependencies (variables and mixins). There is a wrapper LESS file [clarin-bootstrap.less](src/main/less/clarin-bootstrap.less) that combines the Bootstrap root less file and the CLARIN additions.
+
+#### Compiling
+
+Use the wrapp LESS file [clarin-bootstrap.less](src/main/less/clarin-bootstrap.less) to compile both "CLARIN flavoured" Bootstrap and the CLARIN additional classes into a single CSS file. Place it in the `less` directory of the Bootstrap source distribution. Alternatively you can use the standard `bootstrap.less` to skip CLARIN's additional classes.
 
 Make sure to use a compatible version of Bootstrap when compiling! The version for which the style was developed and tested can be found in the [Travis configuration file](.travis.yml).
 
-As with the CSS file (see above), its best to use it as is (preferably including it build time based on the style's version number) and make any overrides or other adjustments in separate Less files local to the project. This way you can easily upgrade the CLARIN style when a new release is made available.
+As with the CSS file (see above), its best to use it as is (preferably including it build time based on the style's version number) and make any overrides or other adjustments in separate LESS files local to the project. This way you can easily upgrade the CLARIN style when a new release is made available.
 
 ### Using the style in a Maven project
 You can use the following artifact:
@@ -29,7 +42,7 @@ You can use the following artifact:
 ```
 
 This can be used in combination with, for example, the [unpack goal of the maven-dependency-plugin](https://maven.apache.org/plugins/maven-dependency-plugin/unpack-mojo.html)
-so that the CLARIN base style CSS or LESS is included among your resources before compiling or packaging. See the [VLO project](https://github.com/clarin-eric/VLO) for an example.
+so that the CLARIN base style CSS or LESS is included among your resources before compiling or packaging. See the [VLO webapp project](https://github.com/clarin-eric/VLO/blob/master/vlo-web-app/pom.xml) for an example.
 
 JARs are also bundled with releases.
 
