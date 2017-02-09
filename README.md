@@ -63,7 +63,7 @@ See the [www-clarin-eu_src](https://github.com/clarin-eric/www-clarin-eu_src) pr
 
 1. Edit the Less file(s)
  - Make a _branch or fork_ (please **don't** commit anything not ready for release to master!) of the base_style repository.
- - Make any desired changes to the [variables.less](src/main/less/variables.less) file or add new style code as required.
+ - Make any desired changes to the [variables.less](src/main/less/variables.less) file or add new style code to [clarin-additions.less](src/main/less/clarin-additions.less) as required.
 1. Check the results
  - Build the Less output using your desired method (see Bootstrap's [instructions for building CSS](https://getbootstrap.com/getting-started/#grunt) but you can use [other Less compilers](http://lesscss.org/usage/) as well) and check the results.
  - Make further changes as required.
