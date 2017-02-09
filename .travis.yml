@@ -21,7 +21,7 @@ deploy:
   api_key:
     secure: "$DEPLOY_OAUTH_TOKEN"
   file:
-    - "release-${STYLE_VERSION}.tgz"
+    - "bootstrap-clarin-${STYLE_VERSION}.tgz"
     - "src/main/less/variables.less"
     - "src/main/less/clarin-additions.less"
     - "target-css-with-bootstrap/base-style-${STYLE_VERSION}-css-with-bootstrap.jar"
