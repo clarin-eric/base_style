@@ -6,6 +6,8 @@ All notable changes to the [CLARIN base style project](https://github.com/clarin
 - Updated bootstrap version to 3.3.7
 - Tooltip background colour now primary brand colour (turquoise blue)
 - Javascript is now bundled in compiled distributions
+- Additional style classes are defined in the `clarin-additions.less` file and compiled into the distribution CSS
+- Distribution package name changed from `release-${VERSION}.tgz` to `bootstrap-clarin-${VERSION}.tgz`
 
 ## 0.1.2
 No changes in styling but improved distribution/packaging:
