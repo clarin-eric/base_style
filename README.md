@@ -1,9 +1,14 @@
 # CLARIN base style
 [![Build Status](https://travis-ci.org/clarin-eric/base_style.svg?branch=master)](https://travis-ci.org/clarin-eric/base_style)
 
-A [Bootstrap](https://getbootstrap.com/) based CLARIN style implementing the [CLARIN interface guidelines](https://github.com/clarin-eric/interface_guidelines). Additional information about branding and styling in CLARIN can be found on the [CLARIN Trac](https://trac.clarin.eu/wiki/Branding).
+A [Bootstrap](https://getbootstrap.com/) based CLARIN style implementing the [CLARIN interface guidelines](https://github.com/clarin-eric/interface_guidelines), which in turn are based on the [CLARIN style guide](https://www.clarin.eu/content/styleguide). Additional information about branding and styling in CLARIN can be found on the [CLARIN Trac](https://trac.clarin.eu/wiki/Branding).
 
 ## Using the CLARIN style
+
+There are various ways of using the CLARIN style, which are described below. Which one is the best choice, depends on the usage context. There are a few important points to take note of regardless of the means of usage:
+
+* The CLARIN style makes us of, but _does not provide_ a number of open **fonts** that are part of the CLARIN style guides. See the [fonts](#fonts) section of this document for instructions on how to get the right fonts to be used inside your application.
+* **Avoid making changes to the CSS or LESS** in your copy of the base style, including the Bootstrap variables. Doing so may make it hard for you to upgrade to future versions of the base style. CSS and LESS have various ways of extending and overriding inherited styles, so please make use of those and do not alter provided 'upstream' stylesheets. If there are fixes or other changes that you think should be included in the next version of the base style, please make an issue or pull request on GitHub.
 
 ### Compiled CSS output
 A compiled CSS file is made available for each [release](https://github.com/clarin-eric/base_style/releases). See releases within the [main base_style repository](https://github.com/clarin-eric/base_style). The best way to use this CSS file in your project, is to use it as is and make any overrides or other adjustments in separate CSS files local to the project. This way you can easily upgrade the CLARIN CSS when a new release is made available.
@@ -36,7 +41,7 @@ You can use the following artifact:
 ```xml
 <groupId>eu.clarin.style</groupId>
 <artifactId>base-style</artifactId>
-<version>0.1.2</version>
+<version>0.2.0</version>
 <!-- available classifiers: 'css-with-bootstrap', 'less-with-bootstrap' and 'less-without-bootstrap' -->
 <classifier>css-with-bootstrap</classifier>
 ```
@@ -60,6 +65,22 @@ To deploy to Nexus, you can use the [maven-deploy script](src/main/script/maven-
 
 ### Using the style in a drupal website
 See the [www-clarin-eu_src](https://github.com/clarin-eric/www-clarin-eu_src) project. Dependency of [alpine-httpd-drupal](https://gitlab.com/CLARIN-ERIC/alpine-httpd-drupal).
+
+## Fonts
+The [CLARIN style guide](https://www.clarin.eu/content/styleguide) specifies that the follow open fonts, all available through Google Fonts, are to be used:
+
+* [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+Pro) (base font)
+* [Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab) (can be used for 'streamers' ( 'blockquotes' ) or 'subheads')
+* [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro) (monospace font, e.g. for displaying code)
+
+These fonts can be enabled in any webpage by adding the following HTML header elements:
+```
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i&amp;subset=latin-ext,vietnamese" rel="stylesheet">	
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700&amp;subset=latin-ext" rel="stylesheet">
+```
+
+The elements above import regular and bold variants, and for the case of Source Sans Pro also the italic variants. You can modify the available fonts and font variants by altering the parameters of the links. Go to the Google Fonts pages for the individual fonts to get snippets for including different font variants.
 
 ## Making changes to the CLARIN style
 
