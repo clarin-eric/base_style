@@ -2,11 +2,13 @@
 
 All notable changes to the [CLARIN base style project](https://github.com/clarin-eric/base_style) will be documented in this file.
 
-## 0.1.3
+## 0.2.0
 - Updated bootstrap version to 3.3.7
 - Tooltip background colour now primary brand colour (turquoise blue)
+- The Roboto Slab and Source Code Pro fonts are used in the style
 - Javascript is now bundled in compiled distributions
 - Additional style classes are defined in the `clarin-additions.less` file and compiled into the distribution CSS
+- Classes for social media icons were added (in `clarin-additions.less`)
 - Distribution package name changed from `release-${VERSION}.tgz` to `bootstrap-clarin-${VERSION}.tgz`
 
 ## 0.1.2
