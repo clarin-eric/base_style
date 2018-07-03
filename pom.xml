@@ -76,6 +76,7 @@
                                         <include>variables.less</include>
                                         <include>clarin-additions.less</include>
                                         <include>clarin-bootstrap.less</include>
+                                        <include>clarin-fonts.less</include>
                                     </includes>
                                 </resource>
                             </resources>              
