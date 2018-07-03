@@ -21,6 +21,8 @@ echo "Applying CLARIN flavour..."
 cd -- "bootstrap-${BOOTSTRAP_VER}/"
 ### CLARIN fonts
 ${CP} -r -f -- "../src/main/fonts" '.'
+${CP} -f -- '../src/main/package.js' 'package.js'
+
 ### Put CLARIN root wrapper in place
 ${CP} -f -- '../src/main/less/clarin-bootstrap.less' 'less/clarin-bootstrap.less'
 ### CLARIN customisations
