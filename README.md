@@ -7,7 +7,7 @@ A [Bootstrap](https://getbootstrap.com/) based CLARIN style implementing the [CL
 
 There are various ways of using the CLARIN style, which are described below. Which one is the best choice, depends on the usage context. There are a few important points to take note of regardless of the means of usage:
 
-* The CLARIN style makes us of, but _does not provide_ a number of open **fonts** that are part of the CLARIN style guides. See the [fonts](#fonts) section of this document for instructions on how to get the right fonts to be used inside your application.
+* The CLARIN style makes us of a number of open **fonts** that are part of the CLARIN style guides. Some of the distributions include the required font files. See the [fonts](#fonts) section of this document for instructions on how to get the right fonts to be used inside your application.
 * **Avoid making changes to the CSS or LESS** in your copy of the base style, including the Bootstrap variables. Doing so may make it hard for you to upgrade to future versions of the base style. CSS and LESS have various ways of extending and overriding inherited styles, so please make use of those and do not alter provided 'upstream' stylesheets. If there are fixes or other changes that you think should be included in the next version of the base style, please make an issue or pull request on GitHub.
 
 ### Compiled CSS output
@@ -73,14 +73,7 @@ The [CLARIN style guide](https://www.clarin.eu/content/styleguide) specifies tha
 * [Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab) (can be used for 'streamers' ( 'blockquotes' ) or 'subheads')
 * [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro) (monospace font, e.g. for displaying code)
 
-These fonts can be enabled in any webpage by adding the following HTML header elements:
-```
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i&amp;subset=latin-ext,vietnamese" rel="stylesheet">	
-<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700&amp;subset=latin-ext" rel="stylesheet">
-```
-
-The elements above import regular and bold variants, and for the case of Source Sans Pro also the italic variants. You can modify the available fonts and font variants by altering the parameters of the links. Go to the Google Fonts pages for the individual fonts to get snippets for including different font variants.
+These fonts are included in the base style. However take note that not all distributions include the actual font files. Specifically, the 'without-bootstrap' distribution (see [releases](https://github.com/clarin-eric/base_style/releases) page) only includes the `.less` files that make up the CLARIN base style but none of the dependencies.
 
 ## Making changes to the CLARIN style
 
