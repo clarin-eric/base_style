@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 #gcp can be installed on MacOS via brew. Run "brew install coreutils" to do so.
@@ -19,9 +19,14 @@ curl --fail --location --proto '=https' --silent --show-error --tlsv1 \
 ## Apply CLARIN base style.
 echo "Applying CLARIN flavour..."
 cd -- "bootstrap-${BOOTSTRAP_VER}/"
+### CLARIN fonts
+${CP} -r -f -- "../src/main/fonts" '.'
+${CP} -f -- '../src/main/package.js' 'package.js'
+
 ### Put CLARIN root wrapper in place
 ${CP} -f -- '../src/main/less/clarin-bootstrap.less' 'less/clarin-bootstrap.less'
 ### CLARIN customisations
+${CP} -f -- '../src/main/less/clarin-fonts.less' 'less/clarin-fonts.less'
 ${CP} -f -- '../src/main/less/clarin-additions.less' 'less/clarin-additions.less'
 ${CP} -f -- '../src/main/less/variables.less' 'less/variables.less'
 

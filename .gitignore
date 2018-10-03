@@ -5,5 +5,6 @@
 .idea
 
 release.tgz
-bootstrap-*/
+bootstrap-*
 /target*/
+nb-configuration.xml

@@ -76,10 +76,27 @@
                                         <include>variables.less</include>
                                         <include>clarin-additions.less</include>
                                         <include>clarin-bootstrap.less</include>
+                                        <include>clarin-fonts.less</include>
                                     </includes>
                                 </resource>
                             </resources>              
-                        </configuration>            
+                        </configuration>     
+                    </execution>
+                    <execution>
+                        <id>copy-fonts</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/${project.build.finalName}/fonts</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <!-- Our variables.less file, to be mixed with Bootstrap LESS sources -->
+                                    <directory>src/main/fonts</directory>
+                                </resource>
+                            </resources>              
+                        </configuration>     
                     </execution>
                 </executions>
             </plugin>
