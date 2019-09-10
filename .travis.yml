@@ -9,7 +9,7 @@ addons:
 jdk:
   - openjdk8
 env:
-  - STYLE_VERSION="0.4.0-SNAPSHOT" BOOTSTRAP_VER="3.4.0"
+  - STYLE_VERSION="0.4.0-SNAPSHOT" BOOTSTRAP_VER="3.4.1"
 script:
   - sh -x ./build.sh
   - mvn clean
